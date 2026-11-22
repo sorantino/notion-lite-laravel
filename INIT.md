@@ -1,6 +1,6 @@
 # INIT — notion-lite (Laravel)
 
-> Dépôt d'exemple pour la **séquence S1.1** (support écrit + démo vidéo, 35 min).
+> Dépôt d'exemple pour la **séquence S1.1** (support écrit).
 > Dépôt jumeau, lu par l'apprenant (pas de TP) : `notion-lite-springboot`.
 
 ## 1. Objectif
@@ -47,22 +47,19 @@ Un espace de **pages** rédigées en Markdown, organisées en arborescence.
 
 Choix techniques : Laravel 13, PHP 8.3+, SQLite, Blade sans build front, PHPUnit.
 
-## 4. Plan de livraison : un commit poussé par fonctionnalité
+## 4. Plan de livraison : un commit par brique
 
 | Étape | Commit | Contenu |
 |-------|--------|---------|
 | 0 | `chore: init` | Squelette Laravel vierge + ce fichier |
-| 1 | `feat(domain): page, titre, étiquettes` | Entité `Page`, value objects `PageTitle` et `Tags`, exceptions métier, interface `PageRepository`, tests unitaires |
-| 2 | `feat(persistence): stockage Eloquent` | Migration `pages`, modèle Eloquent, `EloquentPageRepository`, binding dans le provider |
-| 3 | `feat(service): créer et modifier une page` | `PageService` + tests |
-| 4 | `feat(web): lister, afficher, éditer` | Contrôleur, FormRequest, routes, vues (barre latérale en arbre, éditeur) |
-| 5 | `feat: sous-pages` | Création sous une page, limite de profondeur |
-| 6 | `feat: corbeille` | Archiver, restaurer, supprimer définitivement |
-| 7 | `feat: recherche` | Recherche plein texte simple |
-| 8 | `chore: données de démo` | Seeder pour la vidéo |
-| 9 | `docs: README framework vs métier` | Tableau fichier par fichier, schéma des couches |
+| 1 | `feat(domain): page, titre, étiquettes` | Entité `Page`, value objects, exceptions, interface `PageRepository`, tests unitaires |
+| 2 | `feat(persistence): stockage Eloquent` | Migration `pages`, modèle `PageRecord`, `EloquentPageRepository` |
+| 3 | `feat(service): cas d'usage des pages` | `PageService` : créer, modifier, sous-pages, corbeille, recherche, arbre |
+| 4 | `feat(web): interface des pages` | Contrôleur, FormRequest, routes, vues Blade, gestion des erreurs métier |
+| 5 | `chore: données d'exemple` | Seeder avec quelques pages |
+| 6 | `docs: README framework vs métier` | Tableau fichier par fichier, schéma des couches |
 
-Le dépôt Spring Boot suit le même plan, étape par étape.
+Le dépôt Spring Boot suit le même plan.
 
 ## 5. Suite : fonctionnalités avec le SDK IA Laravel (hors S1.1)
 
