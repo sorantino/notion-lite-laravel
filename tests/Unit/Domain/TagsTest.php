@@ -2,8 +2,8 @@
 
 namespace Tests\Unit\Domain;
 
-use App\Domain\Page\PageRuleViolation;
-use App\Domain\Page\Tags;
+use App\Domain\Note\NoteRuleViolation;
+use App\Domain\Note\Tags;
 use PHPUnit\Framework\TestCase;
 
 class TagsTest extends TestCase
@@ -17,7 +17,7 @@ class TagsTest extends TestCase
 
     public function test_it_refuses_more_than_five_tags(): void
     {
-        $this->expectException(PageRuleViolation::class);
+        $this->expectException(NoteRuleViolation::class);
 
         Tags::fromArray(['a', 'b', 'c', 'd', 'e', 'f']);
     }
@@ -31,7 +31,7 @@ class TagsTest extends TestCase
 
     public function test_it_refuses_a_tag_longer_than_30_characters(): void
     {
-        $this->expectException(PageRuleViolation::class);
+        $this->expectException(NoteRuleViolation::class);
 
         Tags::fromArray([str_repeat('x', 31)]);
     }

@@ -1,7 +1,7 @@
 <?php
 
-use App\Domain\Page\PageNotFound;
-use App\Domain\Page\PageRuleViolation;
+use App\Domain\Note\NoteNotFound;
+use App\Domain\Note\NoteRuleViolation;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -22,7 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
 
-        $exceptions->render(fn (PageRuleViolation $e) => back()->withInput()->withErrors(['domain' => $e->getMessage()]));
+        $exceptions->render(fn (NoteRuleViolation $e) => back()->withInput()->withErrors(['domain' => $e->getMessage()]));
 
-        $exceptions->map(PageNotFound::class, fn (PageNotFound $e) => new NotFoundHttpException($e->getMessage(), $e));
+        $exceptions->map(NoteNotFound::class, fn (NoteNotFound $e) => new NotFoundHttpException($e->getMessage(), $e));
     })->create();

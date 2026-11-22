@@ -29,27 +29,29 @@
         .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
         .btn.danger { color: var(--danger); }
         .content { line-height: 1.7; }
+        .summary { background: var(--side); border-left: 3px solid var(--accent); border-radius: 6px; padding: 12px 16px; margin-bottom: 24px; }
+        .summary p { margin: 6px 0 0; }
         .alert { padding: 10px 14px; border-radius: 6px; margin-bottom: 20px; }
         .alert.ok { background: #edf3ec; color: #448361; }
         .alert.error { background: #fdebec; color: var(--danger); }
-        form.page input[name=title] { width: 100%; font-size: 2.2rem; font-weight: 700; border: none; outline: none; margin-bottom: 12px; color: var(--text); }
-        form.page input[name=tags] { width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 12px; }
-        form.page textarea { width: 100%; min-height: 360px; padding: 12px; border: 1px solid var(--line); border-radius: 6px; font: inherit; line-height: 1.6; }
+        form.note input[name=title] { width: 100%; font-size: 2.2rem; font-weight: 700; border: none; outline: none; margin-bottom: 12px; color: var(--text); }
+        form.note input[name=tags] { width: 100%; padding: 8px; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 12px; }
+        form.note textarea { width: 100%; min-height: 360px; padding: 12px; border: 1px solid var(--line); border-radius: 6px; font: inherit; line-height: 1.6; }
         .list { list-style: none; padding: 0; }
         .list li { padding: 12px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; align-items: center; }
     </style>
 </head>
 <body>
 <aside>
-    <div class="brand"><a href="{{ route('pages.index') }}">📝 Notion Lite</a></div>
-    <form action="{{ route('pages.search') }}" method="get">
+    <div class="brand"><a href="{{ route('notes.index') }}">📝 Notion Lite</a></div>
+    <form action="{{ route('notes.search') }}" method="get">
         <input type="search" name="q" placeholder="Rechercher…" value="{{ request('q') }}">
     </form>
-    @include('pages._tree', ['nodes' => $tree])
+    @include('notes._tree', ['nodes' => $tree])
     <div class="links">
         <ul>
-            <li><a href="{{ route('pages.create') }}">＋ Nouvelle page</a></li>
-            <li><a href="{{ route('pages.trash') }}">🗑 Corbeille</a></li>
+            <li><a href="{{ route('notes.create') }}">＋ Nouvelle note</a></li>
+            <li><a href="{{ route('notes.trash') }}">🗑 Corbeille</a></li>
         </ul>
     </div>
 </aside>
