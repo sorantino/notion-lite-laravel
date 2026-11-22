@@ -2,7 +2,6 @@
 
 namespace App\Domain\Page;
 
-// Étiquettes : minuscules, sans doublon, 5 max de 30 caractères.
 final class Tags
 {
     public const MAX_TAGS = 5;
@@ -39,7 +38,6 @@ final class Tags
         return new self(array_values($normalized));
     }
 
-    /** "php, Laravel , php" → ["php", "laravel"] */
     public static function fromCommaSeparated(?string $raw): self
     {
         return self::fromArray(explode(',', (string) $raw));

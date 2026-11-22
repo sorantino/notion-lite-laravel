@@ -6,7 +6,6 @@ use App\Domain\Page\PageRuleViolation;
 use App\Domain\Page\PageTitle;
 use PHPUnit\Framework\TestCase;
 
-// Tests du domaine : PHPUnit pur, sans Laravel ni base de données.
 class PageTitleTest extends TestCase
 {
     public function test_it_trims_and_collapses_spaces(): void

@@ -1,9 +1,12 @@
 <?php
 
+use App\Domain\Page\PageNotFound;
+use App\Domain\Page\PageRuleViolation;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,4 +21,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+
+        $exceptions->render(fn (PageRuleViolation $e) => back()->withInput()->withErrors(['domain' => $e->getMessage()]));
+
+        $exceptions->map(PageNotFound::class, fn (PageNotFound $e) => new NotFoundHttpException($e->getMessage(), $e));
     })->create();

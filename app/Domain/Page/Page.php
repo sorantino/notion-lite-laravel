@@ -4,10 +4,8 @@ namespace App\Domain\Page;
 
 use DateTimeImmutable;
 
-// Entité Page : porte les règles métier, sans dépendance au framework.
 final class Page
 {
-    /** Profondeur maximale (0, 1, 2 → 3 niveaux). */
     public const MAX_DEPTH = 2;
 
     private function __construct(
@@ -21,7 +19,6 @@ final class Page
         private DateTimeImmutable $updatedAt,
     ) {}
 
-    /** Création d'une nouvelle page, éventuellement sous une page parente. */
     public static function create(PageTitle $title, string $content, Tags $tags, ?Page $parent = null): self
     {
         if ($parent !== null) {
@@ -45,7 +42,6 @@ final class Page
         );
     }
 
-    // Recharge une page existante, sans rejouer les règles de création.
     public static function reconstitute(
         int $id,
         PageTitle $title,
@@ -75,7 +71,6 @@ final class Page
         $this->touch();
     }
 
-    /** @param  Page|null  $parent  la page parente, si elle existe */
     public function restore(?Page $parent): void
     {
         if ($parent?->isArchived()) {
@@ -98,7 +93,6 @@ final class Page
         return ! $this->archived && $this->depth < self::MAX_DEPTH;
     }
 
-    /** Un aperçu en texte brut, utile pour les listes et la recherche. */
     public function excerpt(int $length = 140): string
     {
         $text = trim(preg_replace('/\s+/u', ' ', strip_tags($this->content)));
@@ -125,8 +119,6 @@ final class Page
     {
         $this->updatedAt = new DateTimeImmutable;
     }
-
-    // --- Accesseurs (lecture seule depuis l'extérieur) ---
 
     public function id(): ?int
     {

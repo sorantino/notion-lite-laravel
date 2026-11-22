@@ -2,7 +2,6 @@
 
 namespace App\Domain\Page;
 
-// Une règle métier a été enfreinte (un constructeur nommé par règle).
 final class PageRuleViolation extends \DomainException
 {
     public static function emptyTitle(): self

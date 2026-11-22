@@ -2,7 +2,6 @@
 
 namespace App\Domain\Page;
 
-// Titre de page : obligatoire, 120 caractères max.
 final class PageTitle
 {
     public const MAX_LENGTH = 120;
